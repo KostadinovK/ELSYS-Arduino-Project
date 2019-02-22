@@ -1,7 +1,7 @@
 #include <Keypad.h>
 #include<LiquidCrystal.h>
 #include <Menu.h>
-
+#include <GameController.h>
 
 const byte ROWS = 4; 
 const byte COLS = 3;
@@ -21,11 +21,15 @@ LiquidCrystal screen(rs, en, d4, d5, d6, d7);
 Keypad keyPad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 String options[] = {"1.Bulls and Cows", "2.Dinosaur Game"};
-Menu menu(options, 2, screen, keyPad);
+int optionsCount = 2;
+Menu menu(options, optionsCount, screen, keyPad);
 
 
 void setup() {
   menu.print();
+
+  GameController controller(menu.getOptions(), menu.getSelectedOption());
+  controller.executeSelectedOption();
 }
 
 void loop() {
