@@ -1,5 +1,7 @@
 #pragma once
 
+#include "stdexcept"
+
 class Number
 {
     private:
@@ -8,11 +10,14 @@ class Number
         int cows;
         bool isValid;
 
+        int getNumberDigits(int num);
+        bool hasDuplicates(int num);
+
     public:
         Number();
         Number(int num); //with exception throwing
 
-        bool checkIsValid();
+        bool checkIsValid(int num);
 
         void addCow();
         void addBull();

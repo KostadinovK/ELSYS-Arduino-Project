@@ -2,6 +2,7 @@
 
 #include <Player.h>
 #include <Computer.h>
+#include <Arduino.h>
 
 class BullsAndCowsGameEngine
 {
@@ -11,6 +12,8 @@ class BullsAndCowsGameEngine
         Computer computer;
         bool gameOver;
         int tries;
+
+        String* triesLog;
     
     public:
         BullsAndCowsGameEngine();
