@@ -13,10 +13,11 @@ class BullsAndCowsGameEngine
         bool gameOver;
         int tries;
 
+        Keypad* keyPad;
         String* triesLog;
     
     public:
-        BullsAndCowsGameEngine();
+        BullsAndCowsGameEngine(Keypad& keyPad);
 
         void printIntro();
         void startGameLoop();
