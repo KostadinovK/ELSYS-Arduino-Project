@@ -2,7 +2,10 @@
 
 #include <Player.h>
 #include <Computer.h>
+
 #include <Arduino.h>
+#include <Keypad.h>
+#include<LiquidCrystal.h>
 
 class BullsAndCowsGameEngine
 {
@@ -14,12 +17,13 @@ class BullsAndCowsGameEngine
         int tries;
 
         Keypad* keyPad;
-        String* triesLog;
+        LiquidCrystal* screen;
+        String triesLog;
     
     public:
-        BullsAndCowsGameEngine(Keypad& keyPad);
+        BullsAndCowsGameEngine(Keypad keyPad, LiquidCrystal screen);
 
-        void printIntro();
+        void drawIntro();
         void startGameLoop();
 
         int getTries();

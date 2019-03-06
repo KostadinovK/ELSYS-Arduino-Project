@@ -10,10 +10,12 @@ Number::Number()
 
 Number::Number(int num)
 {
+    /*
     if(!checkIsValid(num))
     {
         throw std::invalid_argument("Invalid number");
     }
+    */
 
     value = num;
     bulls = 0;

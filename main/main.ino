@@ -27,8 +27,7 @@ Menu menu(options, optionsCount, screen, keyPad);
 
 void setup() {
   menu.print();
-
-  GameController controller(menu.getOptions(), menu.getSelectedOption());
+  GameController controller(menu.getKeypad(), menu.getScreen(), menu.getOptions(), menu.getSelectedOption());
   controller.executeSelectedOption();
 }
 

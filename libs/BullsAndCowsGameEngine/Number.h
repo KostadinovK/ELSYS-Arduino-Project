@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdexcept"
-
 class Number
 {
     private:
@@ -15,8 +13,8 @@ class Number
 
     public:
         Number();
-        Number(int num); //with exception throwing
-
+        Number(int num);
+        
         bool checkIsValid(int num);
 
         void addCow();

@@ -25,5 +25,11 @@ public:
 
 	void print();
 	
-	int getOption();
+	int getSelectedOption();
+
+	String* getOptions();
+
+	Keypad getKeypad();
+
+	LiquidCrystal getScreen();
 };

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Number.h>
+#include <stdlib.h>
+#include <time.h> 
 
 class Computer
 {
@@ -11,7 +13,7 @@ class Computer
         Computer();
 
         void generateNumber();
-        bool hasDupes();
+        bool hasDuplicates();
         
-        int getNumber();
+        Number getNumber();
 };

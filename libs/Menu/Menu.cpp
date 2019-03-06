@@ -9,7 +9,7 @@ Menu::Menu(String* options, int optionsCount, LiquidCrystal& screen, Keypad& key
 	this->screen = &screen;
 	this->keyPad = &keyPad;
 
-	screen.begin(16, 2);
+	this->screen->begin(16, 2);
 }
 
 void Menu::print()
@@ -67,12 +67,24 @@ void Menu::run() {
 		}
 	}
 	screen->clear();
-	screen->print("Option: ");
-	screen->print(optionIndex + 1);
-
 }
 
-int Menu::getOption()
+int Menu::getSelectedOption()
 {
 	return this->optionIndex + 1;
+}
+
+String* Menu::getOptions()
+{
+	return this->options;
+}
+
+Keypad Menu::getKeypad()
+{
+	return *this->keyPad;
+}
+
+LiquidCrystal Menu::getScreen()
+{
+	return *this->screen;
 }
