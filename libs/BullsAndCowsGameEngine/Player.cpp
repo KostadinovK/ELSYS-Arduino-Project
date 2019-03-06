@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-    score = 0;
+    score = 200;
     guess = Number();
 }
 

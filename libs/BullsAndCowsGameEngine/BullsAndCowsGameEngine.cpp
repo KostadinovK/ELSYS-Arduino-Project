@@ -46,14 +46,71 @@ void BullsAndCowsGameEngine::drawIntro()
     screen->clear();
     screen->print("*-submit #-log");
     screen->setCursor(0, 1);
-    screen->print("Starting...");
+    screen->print("Surrender - 112");
     delay(2000);
     screen->clear();
 }
 
 void BullsAndCowsGameEngine::startGameLoop()
 {
+    while(!gameOver)
+    {
+        computer.generateNumber();
+        player.makeGuess();
 
+        if(player.guess.value == SURRENDER_CODE)
+        {
+            screen->print("You lose!");
+            screen->setCursor(0, 1);
+            screen->print("The number was");
+            screen->print(computer.number.value);
+            gameOver = true;
+            break;
+        }
+
+        if(player.guess.value == computer.guess.value)
+        {
+            screen->print("You Won!");
+            screen->setCursor(0, 1);
+            screen->print("Your score: ");
+            delay(1000);
+            screen->print(player.score);
+            gameOver = true;
+            break;
+        }
+
+        checkForBullsAndCows(player.number);
+
+        screen->clear();
+        screen->print("B: " + player.number.bulls + " C: " + player.number.cows);
+        screen->setCursor(0, 1);
+        screen->print("*-continue #-log");
+
+        triesLog += "N:" + player.number.value + " B:" + player.number.bulls + " C:" + player.number.cows + '\n';
+
+        char key = keyPad->getKey();
+		while (!key) {
+			key = keyPad->getKey();
+		}
+
+        if(key == '#')
+        {
+            printLog();
+        }
+
+        tries++;
+        player.score -= 10;
+    }
+}
+
+void BullsAndCowsGameEngine::checkForBullsAndCows(Number& number)
+{
+
+}
+
+void BullsAndCowsGameEngine::printLog()
+{
+    
 }
 
 int BullsAndCowsGameEngine::getTries()
