@@ -1,14 +1,14 @@
 #include <Player.h>
 
-Player::Player()
+Player::Player(Keypad keyPad)
 {
+    this->keyPad = &keyPad;
     score = 200;
     guess = Number();
 }
 
 void Player::makeGuess()
 {
-
 }
 
 void Player::surrender()

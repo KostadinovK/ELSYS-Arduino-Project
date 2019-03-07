@@ -1,12 +1,10 @@
 #include <BullsAndCowsGameEngine.h>
 
-BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad keyPad, LiquidCrystal screen)
+BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad keyPad, LiquidCrystal screen) : player(Player(keyPad)), computer(Computer())
 {
     this->keyPad = &keyPad;
     this->screen = &screen;
 
-    this->player = Player();
-    this->computer = Computer();
     this->gameOver = false;
     this->tries = 0;
     this->triesLog = String();
@@ -53,22 +51,29 @@ void BullsAndCowsGameEngine::drawIntro()
 
 void BullsAndCowsGameEngine::startGameLoop()
 {
+    computer.generateNumber();
     while(!gameOver)
     {
-        computer.generateNumber();
+        screen->print("Game loop...");
+        delay(2000);
+        screen->clear();
+
+        screen->print("Enter your guess:");
+        screen->setCursor(0,1);
+        delay(2000);
         player.makeGuess();
 
-        if(player.guess.value == SURRENDER_CODE)
+        if(player.guess.getValue() == SURRENDER_CODE)
         {
             screen->print("You lose!");
             screen->setCursor(0, 1);
             screen->print("The number was");
-            screen->print(computer.number.value);
+            screen->print(computer.getNumber().getValue());
             gameOver = true;
             break;
         }
 
-        if(player.guess.value == computer.guess.value)
+        if(player.guess.getValue() == SURRENDER_CODE)//player.guess.getValue() == computer.getNumber().getValue())
         {
             screen->print("You Won!");
             screen->setCursor(0, 1);
@@ -79,14 +84,22 @@ void BullsAndCowsGameEngine::startGameLoop()
             break;
         }
 
-        checkForBullsAndCows(player.number);
+        checkForBullsAndCows(player.guess);
 
         screen->clear();
-        screen->print("B: " + player.number.bulls + " C: " + player.number.cows);
+        screen->print("Debug..");
+        delay(2000);
+        //screen->print("B: " + /*convertToString(player.guess.getBulls()) + */" C: "/* + convertToString(player.guess.getCows())*/);
+        screen->clear();
         screen->setCursor(0, 1);
+
         screen->print("*-continue #-log");
 
-        triesLog += "N:" + player.number.value + " B:" + player.number.bulls + " C:" + player.number.cows + '\n';
+        screen->clear();
+        screen->print("Debug2..");
+        delay(2000);
+
+        //triesLog += "N:" + /*convertToString(player.guess.getValue()) + */" B:" + /* convertToString(player.guess.getBulls()) +*/ " C:" + /*convertToString(player.guess.getCows()) + */'\n';
 
         char key = keyPad->getKey();
 		while (!key) {
@@ -111,6 +124,12 @@ void BullsAndCowsGameEngine::checkForBullsAndCows(Number& number)
 void BullsAndCowsGameEngine::printLog()
 {
     
+}
+
+String BullsAndCowsGameEngine::convertToString(int num)
+{
+    String res = String(num);
+    return res;
 }
 
 int BullsAndCowsGameEngine::getTries()

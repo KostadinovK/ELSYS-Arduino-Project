@@ -25,9 +25,10 @@ class BullsAndCowsGameEngine
 
         void drawIntro();
         void startGameLoop();
-        void checkForBullsAndCows(Number number);
+        void checkForBullsAndCows(Number& number);
         void printLog();
         
+        String convertToString(int num);
         int getTries();
         bool getGameState();
 };

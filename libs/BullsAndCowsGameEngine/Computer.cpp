@@ -24,7 +24,7 @@ bool Computer::hasDuplicates()
     int value = this->number.getValue();
     bool digs[10];
 
-    for(int i = 0;i < 9;i++)
+    for(int i = 0;i < 10;i++)
     {
         digs[i] = false;
     }
@@ -39,6 +39,7 @@ bool Computer::hasDuplicates()
         }
 
         digs[digit] = true;
+        value /= 10;
     }
 
     return false;
