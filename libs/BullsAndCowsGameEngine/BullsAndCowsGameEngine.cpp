@@ -84,23 +84,34 @@ void BullsAndCowsGameEngine::startGameLoop()
             break;
         }
 
-        checkForBullsAndCows(player.guess);
-
-        screen->clear();
+       screen->clear();
         screen->print("Debug..");
         delay(2000);
-        //screen->print("B: " + /*convertToString(player.guess.getBulls()) + */" C: "/* + convertToString(player.guess.getCows())*/);
+        screen->clear();
+        String bullsChar = String("B: ");
+        screen->print(bullsChar);
+        delay(3000);
+        
+        String bulls = convertToString(player.guess.getBulls());
+        //screen->print("Hi");
+        //delay(1000);
+        /*
+        String cowsChar = String("C: ");
+        screen->print(cowsChar);
+        delay(1000);
+        String cows = convertToString(player.guess.getCows());
+        screen->print(cows);
+        delay(1000);
+        //screen->print("B: " + convertToString(player.guess.getBulls()) + " C: " + convertToString(player.guess.getCows()));
         screen->clear();
         screen->setCursor(0, 1);
-
+        
         screen->print("*-continue #-log");
 
         screen->clear();
         screen->print("Debug2..");
         delay(2000);
-
-        //triesLog += "N:" + /*convertToString(player.guess.getValue()) + */" B:" + /* convertToString(player.guess.getBulls()) +*/ " C:" + /*convertToString(player.guess.getCows()) + */'\n';
-
+        
         char key = keyPad->getKey();
 		while (!key) {
 			key = keyPad->getKey();
@@ -113,6 +124,9 @@ void BullsAndCowsGameEngine::startGameLoop()
 
         tries++;
         player.score -= 10;
+        */
+
+
     }
 }
 
