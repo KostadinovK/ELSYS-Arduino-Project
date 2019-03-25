@@ -6,14 +6,10 @@
 
 class Computer
 {
-    private:
-        Number number;
-
     public:
+        Number number;
         Computer();
 
         void generateNumber();
         bool hasDuplicates();
-        
-        Number getNumber();
 };

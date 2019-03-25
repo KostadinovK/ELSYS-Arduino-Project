@@ -5,7 +5,7 @@
 
 const byte ROWS = 4; 
 const byte COLS = 3;
-const int rs = 5, en = 4, d4 = 3, d5 = 2, d6 = 1, d7 = 0;
+const int rs = 5, en = 4, d4 = 3, d5 = 2, d6 = A1, d7 = A0;
 
 char hexaKeys[ROWS][COLS] = {
   {'1', '2', '3'},
@@ -26,6 +26,7 @@ Menu menu(options, optionsCount, screen, keyPad);
 
 
 void setup() {
+  Serial.begin(9600);
   menu.print();
   GameController controller(menu.getKeypad(), menu.getScreen(), menu.getOptions(), menu.getSelectedOption());
   controller.executeSelectedOption();

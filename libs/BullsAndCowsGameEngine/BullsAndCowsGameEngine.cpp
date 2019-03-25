@@ -68,12 +68,13 @@ void BullsAndCowsGameEngine::startGameLoop()
             screen->print("You lose!");
             screen->setCursor(0, 1);
             screen->print("The number was");
-            screen->print(computer.getNumber().getValue());
+            screen->print(computer.number.getValue());
             gameOver = true;
             break;
         }
-
-        if(player.guess.getValue() == SURRENDER_CODE)//player.guess.getValue() == computer.getNumber().getValue())
+        Serial.print(computer.number.getValue());
+        
+        if(player.guess.getValue() == computer.number.getValue())
         {
             screen->print("You Won!");
             screen->setCursor(0, 1);
@@ -92,16 +93,16 @@ void BullsAndCowsGameEngine::startGameLoop()
         screen->print(bullsChar);
         delay(3000);
         
-        String bulls = convertToString(player.guess.getBulls());
-        //screen->print("Hi");
-        //delay(1000);
-        /*
+        /*String bulls = convertToString(player.guess.getBulls());
+        screen->print("Hi");
+        delay(1000);
+        
         String cowsChar = String("C: ");
         screen->print(cowsChar);
         delay(1000);
-        String cows = convertToString(player.guess.getCows());
-        screen->print(cows);
-        delay(1000);
+        //String cows = convertToString(player.guess.getCows());
+        //screen->print(cows);
+        //delay(1000);
         //screen->print("B: " + convertToString(player.guess.getBulls()) + " C: " + convertToString(player.guess.getCows()));
         screen->clear();
         screen->setCursor(0, 1);

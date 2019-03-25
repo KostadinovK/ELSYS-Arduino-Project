@@ -44,8 +44,3 @@ bool Computer::hasDuplicates()
 
     return false;
 }
-
-Number Computer::getNumber()
-{
-    return this->number;
-}
