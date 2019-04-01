@@ -7,8 +7,9 @@ Player::Player(Keypad keyPad)
     guess = Number();
 }
 
-void Player::makeGuess()
+void Player::makeGuess(int value)
 {
+    guess.updateValue(value);
 }
 
 void Player::surrender()

@@ -13,7 +13,7 @@ class Player
 
         Player(Keypad keyPad);
 
-        void makeGuess();
+        void makeGuess(int value);
         void surrender();
 
         Number getGuess();

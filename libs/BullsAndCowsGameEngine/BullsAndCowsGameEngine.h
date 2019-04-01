@@ -27,7 +27,9 @@ class BullsAndCowsGameEngine
         void startGameLoop();
         void checkForBullsAndCows(Number& number);
         void printLog();
-        
+        int makeGuess();
+        bool hasDuplicates(int value[]);
+
         int getTries();
         bool getGameState();
 };
