@@ -33,7 +33,7 @@ Menu menu(options, optionsCount, screen, keyPad);
 void setup() {
   Serial.begin(9600);
   menu.print();
-  GameController controller(menu.getKeypad(), menu.getScreen(), menu.getOptions(), menu.getSelectedOption());
+  GameController controller(keyPad, screen, menu.getOptions(), menu.getSelectedOption());
   controller.executeSelectedOption();
 }
 
