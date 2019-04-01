@@ -1,6 +1,6 @@
 #include <GameController.h>
 
-GameController::GameController(Keypad keyPad, LiquidCrystal screen, String* options, int option)
+GameController::GameController(Keypad& keyPad, LiquidCrystal& screen, String* options, int option)
 {
     this->keyPad = &keyPad;
     this->screen = &screen;

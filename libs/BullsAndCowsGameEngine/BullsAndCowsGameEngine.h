@@ -21,14 +21,13 @@ class BullsAndCowsGameEngine
         String triesLog;
     
     public:
-        BullsAndCowsGameEngine(Keypad keyPad, LiquidCrystal screen);
+        BullsAndCowsGameEngine(Keypad& keyPad, LiquidCrystal& screen);
 
         void drawIntro();
         void startGameLoop();
         void checkForBullsAndCows(Number& number);
         void printLog();
         
-        String convertToString(int num);
         int getTries();
         bool getGameState();
 };

@@ -78,13 +78,3 @@ String* Menu::getOptions()
 {
 	return this->options;
 }
-
-Keypad Menu::getKeypad()
-{
-	return *this->keyPad;
-}
-
-LiquidCrystal Menu::getScreen()
-{
-	return *this->screen;
-}

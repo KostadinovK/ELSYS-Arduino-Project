@@ -15,6 +15,6 @@ class GameController
         LiquidCrystal* screen;
 
     public:
-        GameController(Keypad keyPad, LiquidCrystal screen, String* options, int option);
+        GameController(Keypad& keyPad, LiquidCrystal& screen, String* options, int option);
         void executeSelectedOption();
 };

@@ -28,8 +28,4 @@ public:
 	int getSelectedOption();
 
 	String* getOptions();
-
-	Keypad getKeypad();
-
-	LiquidCrystal getScreen();
 };

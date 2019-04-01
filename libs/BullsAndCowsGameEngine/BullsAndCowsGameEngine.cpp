@@ -1,7 +1,9 @@
 #include <BullsAndCowsGameEngine.h>
 
-BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad keyPad, LiquidCrystal screen) : player(Player(keyPad)), computer(Computer())
+BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad& keyPad, LiquidCrystal& screen) : player(Player(keyPad)), computer(Computer())
 {
+    
+
     this->keyPad = &keyPad;
     this->screen = &screen;
 
@@ -54,10 +56,6 @@ void BullsAndCowsGameEngine::startGameLoop()
     computer.generateNumber();
     while(!gameOver)
     {
-        screen->print("Game loop...");
-        delay(2000);
-        screen->clear();
-
         screen->print("Enter your guess:");
         screen->setCursor(0,1);
         delay(2000);
@@ -72,7 +70,6 @@ void BullsAndCowsGameEngine::startGameLoop()
             gameOver = true;
             break;
         }
-        Serial.print(computer.number.getValue());
         
         if(player.guess.getValue() == computer.number.getValue())
         {
@@ -85,37 +82,22 @@ void BullsAndCowsGameEngine::startGameLoop()
             break;
         }
 
-       screen->clear();
-        screen->print("Debug..");
-        delay(2000);
         screen->clear();
-        String bullsChar = String("B: ");
-        screen->print(bullsChar);
-        delay(3000);
-        
-        /*String bulls = convertToString(player.guess.getBulls());
-        screen->print("Hi");
-        delay(1000);
-        
-        String cowsChar = String("C: ");
-        screen->print(cowsChar);
-        delay(1000);
-        //String cows = convertToString(player.guess.getCows());
-        //screen->print(cows);
-        //delay(1000);
-        //screen->print("B: " + convertToString(player.guess.getBulls()) + " C: " + convertToString(player.guess.getCows()));
-        screen->clear();
+
+        int bulls = player.guess.getBulls();
+        Serial.print(bulls);
+        screen->print("B:");
+        screen->print(bulls);
+        screen->print("  C:");
+        int cows = player.guess.getCows();
+        screen->print(cows);
+       
         screen->setCursor(0, 1);
-        
         screen->print("*-continue #-log");
 
-        screen->clear();
-        screen->print("Debug2..");
-        delay(2000);
-        
         char key = keyPad->getKey();
 		while (!key) {
-			key = keyPad->getKey();
+	        key = keyPad->getKey();
 		}
 
         if(key == '#')
@@ -125,9 +107,8 @@ void BullsAndCowsGameEngine::startGameLoop()
 
         tries++;
         player.score -= 10;
-        */
-
-
+        screen->clear();
+        delay(1000);
     }
 }
 
@@ -139,12 +120,6 @@ void BullsAndCowsGameEngine::checkForBullsAndCows(Number& number)
 void BullsAndCowsGameEngine::printLog()
 {
     
-}
-
-String BullsAndCowsGameEngine::convertToString(int num)
-{
-    String res = String(num);
-    return res;
 }
 
 int BullsAndCowsGameEngine::getTries()
