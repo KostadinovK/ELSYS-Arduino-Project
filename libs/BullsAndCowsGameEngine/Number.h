@@ -19,6 +19,9 @@ class Number
 
         void addCow();
         void addBull();
+        void addCow(int cows);
+        void addBull(int bulls);
+
         void updateValue(int value);
 
         int getValue();

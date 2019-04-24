@@ -81,14 +81,17 @@ void BullsAndCowsGameEngine::startGameLoop()
             break;
         }
 
+        checkForBullsAndCows();
+
         screen->clear();
 
         int bulls = player.guess.getBulls();
-       
+        
         screen->print("B:");
         screen->print(bulls);
-        screen->print("  C:");
+
         int cows = player.guess.getCows();
+        screen->print("  C:");
         screen->print(cows);
        
         screen->setCursor(0, 1);
@@ -113,15 +116,42 @@ void BullsAndCowsGameEngine::startGameLoop()
         player.score -= 10;
         screen->clear();
         delay(1000);
-
-       
-        
     }
 }
 
-void BullsAndCowsGameEngine::checkForBullsAndCows(Number& number)
+void BullsAndCowsGameEngine::checkForBullsAndCows()
 {
+    int n = player.guess.getValue();
+    int m = computer.number.getValue();
 
+    //Checking for Bulls and adding them
+    while(n > 0){
+        int playerDigit = n % 10;
+        int computerDigit = m % 10;
+
+        if (playerDigit == computerDigit) {
+            player.guess.addBull();
+        }
+        
+        n = n / 10;
+        m = m / 10;
+    }
+
+    // for (int i = 0; i < secret_number.length(); i++) {
+    //             if (guess.at(i) == secret_number.at(i)) {
+    //                 bull++;
+    //             }
+    //         }
+
+    //         for (int i = 0; i < guess.length(); i++) {
+    //             int secret = secret_number.at(i);
+    //             if (guess.find(secret)) {
+    //                 find_count++;
+    //             }
+    //         }
+
+    //         calculate_cows = find_count - bull;
+    //         cow = (calculate_cows < 0) ? 0 : calculate_cows;
 }
 
 void BullsAndCowsGameEngine::printLog()

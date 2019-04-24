@@ -10,13 +10,6 @@ Number::Number()
 
 Number::Number(int num)
 {
-    /*
-    if(!checkIsValid(num))
-    {
-        throw std::invalid_argument("Invalid number");
-    }
-    */
-
     value = num;
     bulls = 0;
     cows = 0;
@@ -86,6 +79,17 @@ void Number::addCow()
 {
     this->cows++;
 }
+
+void Number::addBull(int bulls)
+{
+    this->bulls += bulls;
+}
+
+void Number::addCow(int cows)
+{
+    this->cows += cows;
+}
+
 
 void Number::updateValue(int value){
     this->value = value;
