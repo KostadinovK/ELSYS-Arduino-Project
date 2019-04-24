@@ -65,21 +65,19 @@ void BullsAndCowsGameEngine::startGameLoop()
         int guess = this->makeGuess();
 
         player.makeGuess(guess);
+        tries++;
         
         if(player.guess.getValue() == computer.number.getValue())
         {
             screen->clear();
             screen->print("You Won!");
+            delay(1000);
+            screen->clear();
+            screen->print("Tries: ");
+            screen->print(tries);
             screen->setCursor(0, 1);
             screen->print("Your score: ");
             screen->print(player.score);
-            gameOver = true;
-            
-            askForRestart(gameOver);
-
-            if (gameOver) {
-                return;
-            }
             break;
         }
 
@@ -230,25 +228,6 @@ bool BullsAndCowsGameEngine::hasDuplicates(int value[]){
     
 
     return false;
-}
-
-void BullsAndCowsGameEngine::askForRestart(bool& gameOver)
-{
-    screen->clear();
-    screen->print("Play Again?");
-    screen->setCursor(0,1);
-    screen->print("* - yes # - no");
-
-    char key = keyPad->getKey();
-	while (!key) {
-	    key = keyPad->getKey();
-	}
-
-    if (key == '*') {
-        gameOver = false;
-        tries = 0;
-        player.score = 200;
-    }
 }
 
 int BullsAndCowsGameEngine::getTries()
