@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Number.h>
-#include <stdlib.h>
-#include <time.h> 
+#include <Arduino.h>
+#include <Number.h> 
 
 class Computer
 {
@@ -11,5 +10,7 @@ class Computer
         Computer();
 
         void generateNumber();
-        bool hasDuplicates();
+        
+    private:
+        bool hasDuplicates(int num);
 };

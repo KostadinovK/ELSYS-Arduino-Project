@@ -56,7 +56,6 @@ void BullsAndCowsGameEngine::drawIntro()
 void BullsAndCowsGameEngine::startGameLoop()
 {
     computer.generateNumber();
-    Serial.println(computer.number.getValue());
     while(!gameOver)
     {
         screen->print("Enter your guess:");

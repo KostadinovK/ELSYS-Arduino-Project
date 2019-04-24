@@ -2,26 +2,23 @@
 
 Computer::Computer()
 {
-    srand(time(NULL));
-    this->number = Number();
+    randomSeed(analogRead(A3));
 }
 
 void Computer::generateNumber()
 {
-    int num = rand() % 9999 + 1000;
+    int num = random(1000, 9999);
     
-    this->number = Number(num);
-
-    while(this->hasDuplicates())
+    while(this->hasDuplicates(num))
     {
-        num = rand() % 9999 + 1000;
-        this->number = Number(num);
+        num = random(1000, 9999);
     }
+
+    this->number = Number(num);
 }
 
-bool Computer::hasDuplicates()
+bool Computer::hasDuplicates(int num)
 {
-    int value = this->number.getValue();
     bool digs[10];
 
     for(int i = 0;i < 10;i++)
@@ -29,9 +26,9 @@ bool Computer::hasDuplicates()
         digs[i] = false;
     }
 
-    while(value > 0)
+    while(num > 0)
     {
-        int digit = value % 10;
+        int digit = num % 10;
 
         if(digs[digit])
         {
@@ -39,7 +36,7 @@ bool Computer::hasDuplicates()
         }
 
         digs[digit] = true;
-        value /= 10;
+        num /= 10;
     }
 
     return false;
