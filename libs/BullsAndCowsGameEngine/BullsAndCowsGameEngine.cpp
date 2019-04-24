@@ -56,6 +56,7 @@ void BullsAndCowsGameEngine::drawIntro()
 void BullsAndCowsGameEngine::startGameLoop()
 {
     computer.generateNumber();
+    Serial.println(computer.number.getValue());
     while(!gameOver)
     {
         screen->print("Enter your guess:");
@@ -133,6 +134,7 @@ void BullsAndCowsGameEngine::checkForBullsAndCows()
         int computerDigit = m % 10;
         playerDigits[index] = playerDigit;
         computerDigits[index] = computerDigit;
+        index++;
         if (playerDigit == computerDigit) {
             player.guess.addBull();
         }
@@ -147,7 +149,6 @@ void BullsAndCowsGameEngine::checkForBullsAndCows()
         for(int computerDigitIndex = 0; computerDigitIndex < 4; computerDigitIndex++)
         {
             int currentComputerDigit = computerDigits[computerDigitIndex];
-
             if(currentPlayerDigit == currentComputerDigit && playerDigitIndex != computerDigitIndex)
             {
                 player.guess.addCow();
