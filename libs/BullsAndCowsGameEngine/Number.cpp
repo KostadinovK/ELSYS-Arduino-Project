@@ -93,6 +93,8 @@ void Number::addCow(int cows)
 
 void Number::updateValue(int value){
     this->value = value;
+    this->bulls = 0;
+    this->cows = 0;
 }
 
 int Number::getValue()
