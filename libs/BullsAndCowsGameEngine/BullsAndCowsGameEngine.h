@@ -6,8 +6,9 @@
 #include <Arduino.h>
 #include <Keypad.h>
 #include<LiquidCrystal.h>
+#include "GameEngine.h"
 
-class BullsAndCowsGameEngine
+class BullsAndCowsGameEngine : public GameEngine
 {
     private:
         Player player;
@@ -15,8 +16,6 @@ class BullsAndCowsGameEngine
         bool gameOver;
         int tries;
 
-        Keypad* keyPad;
-        LiquidCrystal* screen;
         String triesLog;
 
         void drawIntro();

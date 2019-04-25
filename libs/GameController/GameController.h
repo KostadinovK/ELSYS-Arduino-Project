@@ -5,16 +5,17 @@
 #include<LiquidCrystal.h>
 
 #include "BullsAndCowsGameEngine.h"
+#include "MenuItem.h"
 
 class GameController
 {
     private:
-        String* options;
+        MenuItem* options;
         int selectedOption;
         Keypad* keyPad;
         LiquidCrystal* screen;
 
     public:
-        GameController(Keypad& keyPad, LiquidCrystal& screen, String* options, int option);
+        GameController(Keypad& keyPad, LiquidCrystal& screen, MenuItem* options, int option);
         void executeSelectedOption();
 };

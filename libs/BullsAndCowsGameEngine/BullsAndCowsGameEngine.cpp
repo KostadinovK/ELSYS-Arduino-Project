@@ -1,10 +1,7 @@
 #include <BullsAndCowsGameEngine.h>
 
-BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad& keyPad, LiquidCrystal& screen) : player(Player(keyPad)), computer(Computer())
+BullsAndCowsGameEngine::BullsAndCowsGameEngine(Keypad& keyPad, LiquidCrystal& screen) : GameEngine(keyPad, screen), player(Player(keyPad)), computer(Computer())
 {
-    this->keyPad = &keyPad;
-    this->screen = &screen;
-
     this->gameOver = false;
     this->tries = 0;
     this->triesLog = String();

@@ -1,6 +1,6 @@
 #include <Menu.h>
 
-Menu::Menu(String* options, int optionsCount, LiquidCrystal& screen, Keypad& keyPad)
+Menu::Menu(MenuItem* options, int optionsCount, LiquidCrystal& screen, Keypad& keyPad)
 {
 	optionIndex = 0;
 	this->options = options;
@@ -59,7 +59,7 @@ void Menu::run() {
 		screen->clear();
 		screen->print("Menu:");
 		screen->setCursor(0, 1);
-		screen->print(options[optionIndex]);
+		screen->print(options[optionIndex].name);
 
 		key = keyPad->getKey();
 		while (!key) {
@@ -74,7 +74,7 @@ int Menu::getSelectedOption()
 	return this->optionIndex + 1;
 }
 
-String* Menu::getOptions()
+MenuItem* Menu::getOptions()
 {
 	return this->options;
 }

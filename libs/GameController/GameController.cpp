@@ -1,6 +1,6 @@
 #include <GameController.h>
 
-GameController::GameController(Keypad& keyPad, LiquidCrystal& screen, String* options, int option)
+GameController::GameController(Keypad& keyPad, LiquidCrystal& screen, MenuItem* options, int option)
 {
     this->keyPad = &keyPad;
     this->screen = &screen;
@@ -12,12 +12,5 @@ GameController::GameController(Keypad& keyPad, LiquidCrystal& screen, String* op
 
 void GameController::executeSelectedOption()
 {
-    if(selectedOption == 1 && options[selectedOption - 1] == "1.Bulls and Cows")
-    {
-        BullsAndCowsGameEngine engine = BullsAndCowsGameEngine(*this->keyPad, *this->screen);
-        engine.startGame();
-    }else if(selectedOption == 2 && options[selectedOption - 1] == "2.Dinosaur Game")
-    {
-
-    }
+    options[selectedOption - 1].gameEngine->startGame();
 }
