@@ -1,0 +1,90 @@
+(ExpressProject "Schematic"
+  (ProjectVersion "19981106")
+  (ProjectType "PCB")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library1.olb"
+        (Type "Schematic Library"))
+      (File ".\library2.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\schematic.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (Netlist_TAB "3")
+    (LAYOUT_Netlist_File "SCHEMATIC.MNL")
+    (LAYOUT_PCB_Footprint "{PCB Footprint}")
+    (FALSE)
+    (LAYOUT_Units "0")
+    (FALSE)
+    ( "FALSE"))
+  (Folder "Outputs"
+    (File ".\schematic.mnl"
+      (Type "LAYOUT Netlist File")))
+  (Folder "Referenced Projects")
+  (PartMRUSelector
+    (Arduino
+      (FullPartName "Arduino.Normal")
+      (LibraryName "D:\ORCAD_DATA\KARH\LIBRARY1.OLB")
+      (DeviceIndex "0"))
+    (GND
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (POT
+      (FullPartName "POT.Normal")
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
+      (DeviceIndex "0"))
+    (VCC
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (LCD
+      (FullPartName "LCD.Normal")
+      (LibraryName "D:\ORCAD_DATA\KARH\LIBRARY1.OLB")
+      (DeviceIndex "0"))
+    (P1602AB/TO
+      (FullPartName "P1602AB/TO.Normal")
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (Keypad
+      (FullPartName "Keypad.Normal")
+      (LibraryName "D:\ORCAD_DATA\KARH\LIBRARY1.OLB")
+      (DeviceIndex "0"))
+    (BATTERY
+      (FullPartName "BATTERY.Normal")
+      (LibraryName "D:\ORCAD\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory "D:\OrCad\tools\capture\library\pspice")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" "D:\OrCad_Data\Karh\schematic.dsn")
+      (Path "Design Resources" "D:\OrCad_Data\Karh\schematic.dsn" "SCHEMATIC1")
+      (Path "Design Resources" "D:\OrCad_Data\Karh\schematic.dsn"
+         "Design Cache")
+      (Path "Design Resources" "Library")
+      (Path "Design Resources" "Library" "D:\OrCad_Data\Karh\library1.olb")
+      (Path "Outputs")
+      (Select "Design Resources" "D:\OrCad_Data\Karh\schematic.dsn"
+         "SCHEMATIC1" "PAGE1"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -31 0 200 0 455"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 52 1354 52 546")
+        (Scroll "0 14")
+        (Zoom "100")
+        (Occurrence "/"))
+      (Path "D:\ORCAD_DATA\KARH\SCHEMATIC.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (MPSSessionName "KostadinKostadinov"))

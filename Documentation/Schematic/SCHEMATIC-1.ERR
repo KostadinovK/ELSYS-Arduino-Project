@@ -1,0 +1,5 @@
+AutoECO Error Report
+FILE-A: D:\ORCAD\TOOLS\LAYOUT_PLUS\DATA\_DEFAULT.TCH
+FILE-B: D:\ORCAD_DATA\KARH\SCHEMATIC.MNL
+ERROR: No footprint found for comp U4
+ECO cancelled by user
