@@ -2,6 +2,8 @@
 #include<LiquidCrystal.h>
 #include <Menu.h>
 #include <GameController.h>
+#include <BullsAndCowsGameEngine.h>
+#include <YourOwnGameEngine.h>
 
 #define ROWS 4
 #define COLS 4
@@ -25,8 +27,11 @@ byte colPins[COLS] = {9, 8, 7};
 LiquidCrystal screen(RS, EN, D4, D5, D6, D7);
 Keypad keyPad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
-String options[] = {"1.Bulls and Cows", "2.Dinosaur Game"};
-int optionsCount = 2;
+GameEngine* bullsAndCows = new BullsAndCowsGameEngine(keyPad, screen);
+GameEngine* ownEngine = new YourOwnGameEngine(keyPad, screen);
+
+MenuItem options[] = {MenuItem("1.Bulls And Cows", bullsAndCows), MenuItem("2.Dinosaur Game", bullsAndCows), MenuItem("3.Your Own Game", ownEngine)};
+int optionsCount = 3;
 Menu menu(options, optionsCount, screen, keyPad);
 
 
