@@ -10,5 +10,6 @@ public:
     String name;
     GameEngine* gameEngine;
 
+    MenuItem();
 	MenuItem(String name, GameEngine* gameEngine);
 };

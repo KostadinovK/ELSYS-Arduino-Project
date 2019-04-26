@@ -2,16 +2,18 @@
 
 Computer::Computer()
 {
-    randomSeed(analogRead(A3));
+    randomSeed(analogRead(6));
 }
 
 void Computer::generateNumber()
 {
     int num = random(1000, 9999);
-    
+    Serial.println(num);
     while(this->hasDuplicates(num))
     {
+        Serial.println("Generating...");
         num = random(1000, 9999);
+        Serial.println(num);
     }
 
     this->number = Number(num);
