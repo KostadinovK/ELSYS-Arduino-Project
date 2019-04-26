@@ -1,14 +1,22 @@
 #include <DinosaurGameEngine.h>
 
 DinosaurGameEngine::DinosaurGameEngine(Keypad& keyPad, LiquidCrystal& screen) : GameEngine(keyPad, screen)
-{
-
+{ 
+    jump = 32;
+    score = 0;
+    stopScoring = false;
+    jumpTime = 0;
 }
 
 void DinosaurGameEngine::startGame()
 {
+    intro();
+    gameLoop();
+}
 
-    byte dino[8] = {
+void DinosaurGameEngine::intro()
+{
+    byte dinosaur[8] = {
         0b00000,
         0b00111,
         0b00111,
@@ -52,72 +60,57 @@ void DinosaurGameEngine::startGame()
         0b11111
     };
 
-    int adc_key_in  = 0;
-
-    byte runnerArea[16] {32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32};
-    byte jump = 32;
-
-    int score = 0;
-    bool stopScoring = false;
-
-    byte correct_code = 123;
-
-    unsigned long previousMillis = 0;
-    unsigned long jumpTime = 0;
-    const int jumpLength = 500;
-    const byte chance_of_ob = 15;
-    int objectChance = 0;
-    int speedOfScroller = 300;
-
-    screen->createChar(0, dino);
+    screen->createChar(0, dinosaur);
     screen->createChar(1, cactus);
     screen->createChar(2, bird);
     screen->createChar(3, block);
-  
+
+    for(int i = 0; i < 16; i++)
+    {
+        field[i] = 32;
+    }
+
     randomSeed(6);
     screen->clear();
     showHomeScreen();
+}
 
+void DinosaurGameEngine::gameLoop()
+{
     while(true)
     {
-        unsigned long currentMillis = millis();
-        unsigned long currentMillisOb = millis();
-
-        if (currentMillisOb - previousMillis >= speedOfScroller) 
+        objectChance = random(0,3);
+        if (objectChance == 0)
         {
-            previousMillis = currentMillisOb;
-            objectChance = random(0,3);
-            if (objectChance == 0)
-            {
-                runnerArea[15] = 1;
-            }
-            else if (objectChance == 1)
-            {
-                runnerArea[15] = 2;
-            }
-            else
-            {
-                runnerArea[15] = 32;
-            }
-            delay(500);
-            for (int i = 0; i < 15; i++)
-            {
-                 runnerArea[i] = runnerArea[i + 1];
-            }
-
-            if (!stopScoring)
-            {
-                score++;
-            }
+            field[15] = 1;
         }
-        runnerArea[0] = 3;
-        runnerArea[15] = 3;
+        else if (objectChance == 1)
+        {
+            field[15] = 2;
+        }
+        else
+        {
+            field[15] = 32;
+        }
+        delay(500);
+        for (int i = 0; i < 15; i++)
+        {
+            field[i] = field[i + 1];
+        }
+
+        if (!stopScoring)
+        {
+            score++;
+        }
+    
+        field[0] = 3;
+        field[15] = 3;
 
         if (readKey() == DinosaurGameEngine::SELECT_KEY)
         {
-            if (runnerArea[1] != 32 && (runnerArea[1] != 1 || runnerArea[1] != 2))
+            if (field[1] != 32 && (field[1] != 1 || field[1] != 2))
             {
-                runnerArea[1] = 32;
+                field[1] = 32;
             }
 
             jump = 0;
@@ -127,23 +120,25 @@ void DinosaurGameEngine::startGame()
 
         if (millis() - jumpTime >= jumpLength)
         {
-            if (runnerArea[1] == 32 || runnerArea[1] == 0)
+            if (field[1] == 32 || field[1] == 0)
             {
-                runnerArea[1] = 0;
+                field[1] = 0;
                 jump = 32;
                 stopScoring = false;
             }
             else
             {
-                showCrashScreen();
-                break;
+                screen->setCursor(4, 1);
+                screen->print("Game Over!");
+                delay(2000);
+                return;
             }
         }
 
         for (int i = 0; i < 16; i++)
         {
             screen->setCursor(i, 1);
-            screen->write(runnerArea[i]);
+            screen->write(field[i]);
         }
 
         screen->setCursor(1, 0);
@@ -158,7 +153,10 @@ void DinosaurGameEngine::startGame()
 
 void DinosaurGameEngine::showHomeScreen()
 {
-
+    screen->print("Dinosaur Game");
+    screen->setCursor(0,1);
+    screen->print("* - jump #-walk");
+    delay(2000);
     screen->clear();
     screen->print("Press * to play");
     drawHomeGraphics();
@@ -177,11 +175,6 @@ void DinosaurGameEngine::drawHomeGraphics()
   screen->write(byte(0));
 }
 
-void DinosaurGameEngine::drawBarrier()
-{
-
-}
-
 char DinosaurGameEngine::readKey() 
 {
     char key = keyPad->getKey();
@@ -191,20 +184,4 @@ char DinosaurGameEngine::readKey()
 	}
 
     return key;
-}
-
-void DinosaurGameEngine::showCrashScreen()
-{
-    screen->setCursor(4, 1);
-    screen->print("Game Over!");
-    delay(2000);
-}
-
-void DinosaurGameEngine::updateLcd()
-{
-}
-
-void DinosaurGameEngine::printScore()
-{
-  
 }
