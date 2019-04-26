@@ -3,6 +3,7 @@
 #include <Menu.h>
 #include <GameController.h>
 #include <BullsAndCowsGameEngine.h>
+#include <DinosaurGameEngine.h>
 #include <YourOwnGameEngine.h>
 
 #define ROWS 4
@@ -28,9 +29,10 @@ LiquidCrystal screen(RS, EN, D4, D5, D6, D7);
 Keypad keyPad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 GameEngine* bullsAndCows = new BullsAndCowsGameEngine(keyPad, screen);
+GameEngine* dinosaurGame = new DinosaurGameEngine(keyPad, screen);
 GameEngine* ownEngine = new YourOwnGameEngine(keyPad, screen);
 
-MenuItem options[] = {MenuItem("1.Bulls And Cows", bullsAndCows), MenuItem("2.Dinosaur Game", bullsAndCows), MenuItem("3.Your Own Game", ownEngine)};
+MenuItem options[] = {MenuItem("1.Bulls And Cows", bullsAndCows), MenuItem("2.Dinosaur Game", dinosaurGame), MenuItem("3.Your Own Game", ownEngine)};
 int optionsCount = 3;
 Menu menu(options, optionsCount, screen, keyPad);
 
@@ -40,6 +42,10 @@ void setup() {
   menu.print();
   GameController controller(keyPad, screen, menu.getOptions(), menu.getSelectedOption());
   controller.executeSelectedOption();
+
+  delete bullsAndCows;
+  delete dinosaurGame;
+  delete ownEngine;
 }
 
 void loop() {

@@ -2,10 +2,6 @@
 
 #include <Player.h>
 #include <Computer.h>
-
-#include <Arduino.h>
-#include <Keypad.h>
-#include<LiquidCrystal.h>
 #include "GameEngine.h"
 
 class BullsAndCowsGameEngine : public GameEngine
