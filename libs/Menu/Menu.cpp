@@ -71,7 +71,7 @@ void Menu::run() {
 
 int Menu::getSelectedOption()
 {
-	return this->optionIndex + 1;
+	return this->optionIndex;
 }
 
 MenuItem* Menu::getOptions()

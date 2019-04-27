@@ -42,10 +42,6 @@ void setup() {
   menu.print();
   GameController controller(keyPad, screen, menu.getOptions(), menu.getSelectedOption());
   controller.executeSelectedOption();
-
-  delete bullsAndCows;
-  delete dinosaurGame;
-  delete ownEngine;
 }
 
 void loop() {

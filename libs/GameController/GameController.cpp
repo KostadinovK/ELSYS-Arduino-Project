@@ -12,5 +12,5 @@ GameController::GameController(Keypad& keyPad, LiquidCrystal& screen, MenuItem* 
 
 void GameController::executeSelectedOption()
 {
-    options[selectedOption - 1].gameEngine->startGame();
+    options[selectedOption].gameEngine->startGame();
 }
